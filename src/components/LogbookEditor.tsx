@@ -4,7 +4,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Book, Search, X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { logbookEntries } from "@/data/logbook-entries";
-import type { DLC, LogbookCategory, LogbookEntry, SaveData } from "@/data/types";
+import type {
+  DLC,
+  LogbookCategory,
+  LogbookEntry,
+  SaveData,
+} from "@/data/types";
 import { DLC_NAMES, LOGBOOK_CATEGORY_NAMES } from "@/data/types";
 import { getChallengeCountForLogbookEntry } from "@/lib/challenge-logbook-mapping";
 import {
@@ -269,7 +274,9 @@ export function LogbookEditor({
                 entry={entry}
                 isUnlocked={isLogbookEntryUnlocked(saveData, entry)}
                 onToggle={handleToggleEntry}
-                linkedChallengeCount={getChallengeCountForLogbookEntry(entry.id)}
+                linkedChallengeCount={getChallengeCountForLogbookEntry(
+                  entry.id,
+                )}
               />
             </motion.div>
           ))}

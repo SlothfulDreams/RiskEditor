@@ -27,6 +27,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.Medkit"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/3ebb5f75a716aa6fcab12b7354c3b87e971bcfd5.jpg",
   },
   {
     id: "advancement",
@@ -36,6 +37,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.BossDamageBonus"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/72f985e7287a3011554b361c11ab29b4c3288b22.jpg",
   },
   {
     id: "the-basics",
@@ -45,6 +47,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.Crowbar"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/0079eebffe85d1b08aaeae763004857b784e4207.jpg",
   },
   {
     id: "bandit-unlock",
@@ -54,6 +57,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Survivors.Bandit2"],
     category: "survivors",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/f69d337d9a4a6ccbefbe3423cf4a041c4c50591a.jpg",
   },
   {
     id: "lone-survivor",
@@ -63,6 +67,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.ExtraLife"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/89180d19216b000ec48a72c41369c43fe75bbe45.jpg",
   },
   {
     id: "learning-process",
@@ -72,6 +77,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.Bear"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/63cad15246c4447272519dc2fcf9cc4e047caf78.jpg",
   },
   {
     id: "funded",
@@ -81,6 +87,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Equipment.GoldGat"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/7219275cb5e7f38ad04b011e1490c89ef1e201bb.jpg",
   },
   {
     id: "experimenting",
@@ -90,6 +97,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.EquipmentMagazine"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/06c3c0d8aa11e1d7f9d9899b1260a4669b6d4b15.jpg",
   },
   {
     id: "is-this-bugged",
@@ -99,6 +107,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.Hoof"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/559b14d867e71caafd1596f107fade513abbd6d9.jpg",
   },
   {
     id: "keyed-up",
@@ -108,6 +117,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.TreasureCache"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/62a2e522d5314fe3e401bc382c42d398fb726258.jpg",
   },
   {
     id: "macho",
@@ -117,6 +127,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.ShockNearby"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/94e4e841aec702f5286bb37699e9b6122c5db0b0.jpg",
   },
   {
     id: "bookworm",
@@ -126,6 +137,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Equipment.Scanner"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/b8f57141c6077fc6f64040e80e723f8259abd977.jpg",
   },
   {
     id: "deja-vu",
@@ -135,6 +147,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.BounceNearby"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/87c4d6f8671ec049d5a914566245befa8eef9922.jpg",
   },
   {
     id: "blockade-breaker",
@@ -149,6 +162,7 @@ export const challenges: Challenge[] = [
     ],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/30502a9b687d6d1dc0a821ab2d52da2d7daaff69.jpg",
   },
   {
     id: "multikill",
@@ -158,6 +172,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Equipment.BurnNearby"], // Helfire Tincture - https://riskofrain2.fandom.com/wiki/Helfire_Tincture
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/0bd8f40a8c2bbb258ebc3922a8cce679f80bc9fe.jpg",
   },
   {
     id: "slaughter",
@@ -167,6 +182,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.Infusion"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/14337f17195d82dc1f6b73d808c4ba84a335e41c.jpg",
   },
   {
     id: "i-love-dying",
@@ -176,6 +192,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Equipment.DeathProjectile"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/9a137ed56f0a0900543818cc957189864358e672.jpg",
   },
   {
     id: "cosmic-explorer",
@@ -185,6 +202,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Equipment.Tonic"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/3cc127e3fa2063f2ea6ee2be289228916cb0e041.jpg",
   },
   {
     id: "going-fast",
@@ -194,6 +212,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.JumpBoost"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/352793a439cc060d122df78c71652f0b98aa204c.jpg",
   },
   {
     id: "mechanic",
@@ -203,6 +222,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Equipment.DroneBackup"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/e511650da044982177335b2a8dd7b9867db4ba78.jpg",
   },
   {
     id: "warm-for-life",
@@ -212,6 +232,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Equipment.Cleanse"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/15650a5075d2feb3ad0c46cb76c3a3721f74921f.jpg",
   },
   {
     id: "ascendant",
@@ -222,6 +243,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Equipment.Lightning"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/465283ef2ed9ed9af8e9aa9f6632d95cfa2b6ee7.jpg",
   },
   {
     id: "cut-down",
@@ -231,6 +253,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.ExecuteLowHealthElite"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/55052157013cda249a48f19e7af4dd5e4f7bfd7a.jpg",
   },
   {
     id: "warmonger",
@@ -240,6 +263,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.EnergizedOnEquipmentUse"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/60de70f6c2dcfc880402f7c6fe1917ee9f695ed7.jpg",
   },
   {
     id: "cleanup-duty",
@@ -249,6 +273,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Equipment.Recycle"], // Recycler - https://riskofrain2.fandom.com/wiki/Recycler
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/6322d79583c84913206c76296c6cf7603295e20e.jpg",
   },
   {
     id: "rapidfire",
@@ -258,6 +283,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.AttackSpeedOnCrit"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/c8701a660f57525f02d15e72054f9d29149ecd9c.jpg",
   },
   {
     id: "never-back-down",
@@ -268,6 +294,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.FocusConvergence"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/b1015a4625a318ac72c45d860de59109a9b2c429.jpg",
   },
   {
     id: "maybe-one-more",
@@ -277,6 +304,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.Firework"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/1cb5bbf2d3be03c7d7195a3280de5c9f7ce8b8bd.jpg",
   },
   {
     id: "one-with-woods",
@@ -286,6 +314,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Equipment.PassiveHealing"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/2df4124b539a944517fa00b7402820c7f85b371e.jpg",
   },
   {
     id: "her-concepts",
@@ -295,6 +324,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.NovaOnHeal"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/4bfa374ef709d46349233f113eb035bca5527578.jpg",
   },
   {
     id: "blackout",
@@ -305,6 +335,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Equipment.Gateway"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/45702bf45442c446c5700a78b1e0eab73d532b41.jpg",
   },
   {
     id: "naturopath",
@@ -315,6 +346,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.IncreaseHealing"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/df2f1a888e9f21cfcfc6dca382019ededb045999.jpg",
   },
   {
     id: "death-do-us-part",
@@ -324,6 +356,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.IceRing", "Items.FireRing"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/a85359a4138d58422c11263bd183fe682cf55eb1.jpg",
   },
   {
     id: "automation-activation",
@@ -333,6 +366,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.Squid"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/7e250fbdd7d5faa7c85a057f29af05e33c81ee24.jpg",
   },
   {
     id: "moon-worshipper",
@@ -342,6 +376,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Equipment.Meteor"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/d339ae1698d03792a214d1b74c9c87ff97aaef03.jpg",
   },
   {
     id: "redacted",
@@ -351,6 +386,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Equipment.BFG"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/3f2fd490ac6a4136f24a83d639971489efab9c1f.jpg",
   },
   {
     id: "deicide",
@@ -360,6 +396,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.KillEliteFrenzy"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/65a71bd534e75dc533142a25aba47a31cd407fc3.jpg",
   },
   {
     id: "newtist",
@@ -369,6 +406,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.Talisman"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/be8582b462c397b6712ceb9566d50c2ef54879cb.jpg",
   },
   {
     id: "the-long-road",
@@ -378,6 +416,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.Clover"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/f782ee5ae0bb74b494a0d12c380f87d189b5ab5b.jpg",
   },
   {
     id: "the-calm",
@@ -387,6 +426,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.LunarBadLuck"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/62584fbbec1fd147427e2379db0cab8990cf207a.jpg",
   },
   {
     id: "prismatically-aligned",
@@ -396,6 +436,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.HealOnCrit"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/6cc40d3a190cbb14ae665b0af8cae1a6d0dc5d5d.jpg",
   },
   {
     id: "glorious-battle",
@@ -405,6 +446,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.WarCryOnMultiKill"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/0545d79925e4d8f5cc16f01de8d473af6d24ed2e.jpg",
   },
   {
     id: "demons-and-crabs",
@@ -415,6 +457,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.AutoCastEquipment"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/14daeac2aac7007d35ed5e1251b422de01df5536.jpg",
   },
   {
     id: "king-of-hill",
@@ -424,6 +467,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Equipment.HealAndRevive"],
     category: "items",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/0e8f9d0d95fa96371240816f9f1227cb4e6d947e.jpg",
   },
 
   // ============================================
@@ -437,6 +481,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Survivors.Toolbot"],
     category: "survivors",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/32df421f7ee3e8b6deb1ff809e634c19a969097c.jpg",
   },
   {
     id: "flawless",
@@ -446,6 +491,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Items.SecondarySkillMagazine"],
     category: "items",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/8e8b045585d45181db748d7afd76ff975591a0bf.jpg",
   },
   {
     id: "engineer-unlock",
@@ -455,6 +501,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Survivors.Engineer"],
     category: "survivors",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/ac44fb971c0fb5f0c599a8eadca7e2b921d96d67.jpg",
   },
   {
     id: "artificer-unlock",
@@ -464,6 +511,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Survivors.Mage"],
     category: "survivors",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/75723ecc74d39c43f65a89f41e4af4d581d3b114.jpg",
   },
   {
     id: "mercenary-unlock",
@@ -473,6 +521,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Survivors.Mercenary"],
     category: "survivors",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/cf3d330460ae75272e4d4a3a2a6781b69feee177.jpg",
   },
   {
     id: "rex-unlock",
@@ -482,6 +531,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Survivors.TreeBot"],
     category: "survivors",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/c1ff4aaf47520fd92a2e3bcbfbc76eeb56edb0e1.jpg",
   },
   {
     id: "loader-unlock",
@@ -491,6 +541,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Survivors.Loader"],
     category: "survivors",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/bbe5a56263dc6acac7538f383cd372ffc2541529.jpg",
   },
   {
     id: "acrid-unlock",
@@ -500,6 +551,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Survivors.Croco"],
     category: "survivors",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/6d3e9332cd1574e2ab74dce7305aaca8a86f8e7f.jpg",
   },
   {
     id: "captain-unlock",
@@ -509,6 +561,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Survivors.Captain"],
     category: "survivors",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/beaee2922ea9dfee361c7f2559783be605adf348.jpg",
   },
   {
     id: "voidfiend-unlock",
@@ -518,6 +571,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Survivors.VoidSurvivor"],
     category: "survivors",
     dlc: "sotv",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/e89a8c140644ecf83c9eb95fb9545f94591e7d5d.jpg",
   },
   {
     id: "chef-unlock",
@@ -527,6 +581,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Survivors.Chef"],
     category: "survivors",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/5d177c7d4fd1ca0edb590e63661ecd58d7ada87a.jpg",
   },
   {
     id: "falseson-unlock",
@@ -536,6 +591,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Survivors.FalseSon"],
     category: "survivors",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/7894f5def7de5e6b585532ec6cbf1f3cd2461c4a.jpg",
   },
   {
     id: "drifter-unlock",
@@ -545,6 +601,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Survivors.Drifter"],
     category: "survivors",
     dlc: "ac",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/46f8ea0158dafcbbacfdaf37b6141708a8067530.jpg",
   },
 
   // ============================================
@@ -559,6 +616,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "commando",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/a952c416618e81fc2d8a360e0fb2d88cabff020e.jpg",
   },
   {
     id: "commando-phaseblast",
@@ -570,6 +628,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "commando",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/ad8d62adb7786e7e9ec7c797caf3af593386dacd.jpg",
   },
   {
     id: "commando-incorruptible",
@@ -581,6 +640,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "commando",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/4bffe8934ba431589ea5ca69cdfc1755d15b5fb8.jpg",
   },
 
   // ============================================
@@ -596,6 +656,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "huntress",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/557a88f7367b2e7d6ed888480b5c305672a90d55.jpg",
   },
   {
     id: "huntress-ballista",
@@ -606,6 +667,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "huntress",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/6f4c339f462df9d136dacb43772f8932e1cbd246.jpg",
   },
   {
     id: "huntress-piercing",
@@ -617,6 +679,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "huntress",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/ff2b755b4d65d290e5012322997ab8c1c5ee6025.jpg",
   },
 
   // ============================================
@@ -632,6 +695,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "mult",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/7810ebc3c11063fb82e6af53a2479f67f701fd65.jpg",
   },
   {
     id: "mult-scrap",
@@ -643,6 +707,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "mult",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/f58b6d46a0e1b16e7735abf1eceb27a8e6a51543.jpg",
   },
   {
     id: "mult-seventh",
@@ -653,6 +718,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "mult",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/e30215f787585c030edf69ae0e7d8b50d170c070.jpg",
   },
 
   // ============================================
@@ -667,6 +733,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "engineer",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/c0635b86d62227a3b2852084a91f8a53e2d9a164.jpg",
   },
   {
     id: "engineer-harpoon",
@@ -678,6 +745,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "engineer",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/fd97770e81118b14da52dfb3d183739b7aadba2c.jpg",
   },
   {
     id: "engineer-zerosum",
@@ -689,6 +757,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "engineer",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/a578239dd27956fbfddf6260cb88f10b98c82058.jpg",
   },
 
   // ============================================
@@ -704,6 +773,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "artificer",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/79cdda4e2fde84f7afae62af77443d0d150298c0.jpg",
   },
   {
     id: "artificer-flamethrower",
@@ -714,6 +784,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "artificer",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/d124457a8c5d041c0582c76c57a156ea6995f460.jpg",
   },
   {
     id: "artificer-airborne",
@@ -724,6 +795,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "artificer",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/8aff5d8b1388bab0dfae930aaf0884f33e0f8f98.jpg",
   },
 
   // ============================================
@@ -739,6 +811,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "mercenary",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/2405bf7d200b78e53cf1fb0293ab3fe79142d1a4.jpg",
   },
   {
     id: "mercenary-eviscerate",
@@ -749,6 +822,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "mercenary",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/b893da8c761f491cf14dec250ac5b0505dac8779.jpg",
   },
   {
     id: "mercenary-demon",
@@ -759,6 +833,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "mercenary",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/a43df9e030ec1acea9fd48109878f306fc40a67c.jpg",
   },
 
   // ============================================
@@ -774,6 +849,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "rex",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/bee5085f0864623026428061a048ad5b7dc0f524.jpg",
   },
   {
     id: "rex-harvest",
@@ -785,6 +861,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "rex",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/9db6217b5ac6264c82c59205b5a376527fe211b7.jpg",
   },
   {
     id: "rex-fulloflife",
@@ -795,6 +872,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "rex",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/f64efb0bcab2da1885442e3167b1747b4041591b.jpg",
   },
 
   // ============================================
@@ -810,6 +888,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "loader",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/80de4cf13d504ea28aad2f226e9a222d73e546b8.jpg",
   },
   {
     id: "loader-thunder",
@@ -820,6 +899,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "loader",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/238fb37aaf1b4ec3ce1440eb57655f0fb63846eb.jpg",
   },
   {
     id: "loader-thunderdome",
@@ -830,6 +910,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "loader",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/2428e7a16e72c66a6472d09c35b06af4632c0670.jpg",
   },
 
   // ============================================
@@ -845,6 +926,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "acrid",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/8e4c06833f22e1a41617d72a360411acd416c5f6.jpg",
   },
   {
     id: "acrid-frenzied",
@@ -855,6 +937,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "acrid",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/371a585aa3971055b4983f3e7d878ecfd0963dce.jpg",
   },
   {
     id: "acrid-pandemic",
@@ -865,6 +948,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "acrid",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/e083f291d5677a2426f639d5cec6a8fe0ee9d333.jpg",
   },
 
   // ============================================
@@ -879,6 +963,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "captain",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/500a3386b58986d8352d1580bffc2c9370e2b515.jpg",
   },
   {
     id: "captain-oag",
@@ -889,6 +974,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "captain",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/6613b2b7c7cbc5cd127c6578314e95c188a9de0b.jpg",
   },
   {
     id: "captain-megadrone",
@@ -899,6 +985,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "captain",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/0a290e61d496064f1a318467be8b82dc9780efd5.jpg",
   },
 
   // ============================================
@@ -913,6 +1000,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "bandit",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/4abd32efd794af0a9e170f499df703f7387670bc.jpg",
   },
   {
     id: "bandit-smokebomb",
@@ -923,6 +1011,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "bandit",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/090bce27c4972916f29067b942a43a3c8633ac55.jpg",
   },
   {
     id: "bandit-classicman",
@@ -934,6 +1023,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "bandit",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/50b7fe1eefa077b5ac5976a3a54eec87134896a0.jpg",
   },
 
   // ============================================
@@ -949,6 +1039,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "railgunner",
     dlc: "sotv",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/7b5f8bcae777f4daff576f1677639ae5c4d21d0a.jpg",
   },
   {
     id: "railgunner-annihilator",
@@ -959,6 +1050,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "railgunner",
     dlc: "sotv",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/b5e7d51f1a3d72307d5c43bc1370898dc2a3be07.jpg",
   },
   {
     id: "railgunner-cryocharge",
@@ -970,6 +1062,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "railgunner",
     dlc: "sotv",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/426d74811e1d6846e54a5c1adea8cfe5db8928eb.jpg",
   },
 
   // ============================================
@@ -985,6 +1078,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "seeker",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/00c4aa0395997c9ba316e63698aa25dbb4e32570.jpg",
   },
   {
     id: "seeker-reprieve",
@@ -995,6 +1089,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "seeker",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/cd1f9ac5776b3164a3efe71dba803024a4a8b331.jpg",
   },
   {
     id: "seeker-palmblast",
@@ -1006,6 +1101,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "seeker",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/2e1b720104aa263516904e69da209f78e0138c58.jpg",
   },
 
   // ============================================
@@ -1020,6 +1116,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "chef",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/5a7335da8ee57fcfe6bac947124731ed0e919d6b.jpg",
   },
   {
     id: "chef-oilspill",
@@ -1030,6 +1127,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "chef",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/e693941be8f8c27cc84154ff93f99bbcd9ccac89.jpg",
   },
   {
     id: "chef-yeschef",
@@ -1041,6 +1139,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "chef",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/5d8b6afee91d036e3ae6a43b85103abedc4d0a93.jpg",
   },
 
   // ============================================
@@ -1056,6 +1155,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "falseson",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/710fcafcbfbd43b22dac755627efb468a7085e6a.jpg",
   },
   {
     id: "falseson-protein",
@@ -1066,6 +1166,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "falseson",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/f275549aba4b2d81c6c895889b1dd307e50a5882.jpg",
   },
   {
     id: "falseson-family",
@@ -1077,6 +1178,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "falseson",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/65e7cdb61a41aba2a6c44d9e125ea935f2a1150f.jpg",
   },
 
   // ============================================
@@ -1091,6 +1193,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "operator",
     dlc: "ac",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/fa4e66b02e4a5fc34fd3282fb2e6b9727722e2b0.jpg",
   },
   {
     id: "operator-ricochet",
@@ -1102,6 +1205,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "operator",
     dlc: "ac",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/5a7335da8ee57fcfe6bac947124731ed0e919d6b.jpg",
   },
   {
     id: "operator-noground",
@@ -1113,6 +1217,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "operator",
     dlc: "ac",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/fca973b6eb46b770160eebee59d7381a6d7ef913.jpg",
   },
   {
     id: "operator-lemurian",
@@ -1123,6 +1228,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "operator",
     dlc: "ac",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/321298f4483dfe4fa064f6df91a0fd7ff638f0c5.jpg",
   },
 
   // ============================================
@@ -1137,6 +1243,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "drifter",
     dlc: "ac",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/00bc7275a778bf43eecda1b24819bbce61dd42d5.jpg",
   },
   {
     id: "drifter-inthebag",
@@ -1148,6 +1255,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "drifter",
     dlc: "ac",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/569d7169bb07b0a9d71b38d3edce933f0ffee94e.jpg",
   },
   {
     id: "drifter-leavenotrace",
@@ -1159,6 +1267,7 @@ export const challenges: Challenge[] = [
     category: "skills",
     survivor: "drifter",
     dlc: "ac",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/35b614ce55b260b741ce9fd26d12d89e3efee07b.jpg",
   },
 
   // ============================================
@@ -1173,6 +1282,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "commando",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/744db227744b51b85b4fc55baa4946d8fdbc2c0e.jpg",
   },
   {
     id: "huntress-mastery",
@@ -1183,6 +1293,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "huntress",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/4ff28388bd2132b54967b4c02930699c6438f7a3.jpg",
   },
   {
     id: "mult-mastery",
@@ -1193,6 +1304,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "mult",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/d87cff37e66fe880e70713d511890c7d94cc2b90.jpg",
   },
   {
     id: "engineer-mastery",
@@ -1203,6 +1315,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "engineer",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/0d7ed2d185c45f5f6fcc3c42dbb875faadac0ed4.jpg",
   },
   {
     id: "artificer-mastery",
@@ -1213,6 +1326,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "artificer",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/3db30f9c05d6a9e509358d4677ab81dbfa1fa274.jpg",
   },
   {
     id: "mercenary-mastery",
@@ -1223,6 +1337,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "mercenary",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/88f5e2c045178c2b2ce37e4d53207627dacb5deb.jpg",
   },
   {
     id: "rex-mastery",
@@ -1233,6 +1348,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "rex",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/ab4167264591e737d4aea892eac384ec78c4f6b3.jpg",
   },
   {
     id: "loader-mastery",
@@ -1243,6 +1359,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "loader",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/22360d4dd318f4915e631291b99fe240a0deb489.jpg",
   },
   {
     id: "acrid-mastery",
@@ -1253,6 +1370,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "acrid",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/92f067f53e4110b3d3e3e9f0f9635cf94ec21445.jpg",
   },
   {
     id: "captain-mastery",
@@ -1263,6 +1381,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "captain",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/73f8da70c536dab29a72e57df5dc1e678ff0cc8b.jpg",
   },
   {
     id: "bandit-mastery",
@@ -1273,6 +1392,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "bandit",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/5cd9c5940fa89d37f15cb1b8db41936f5fb9aaee.jpg",
   },
 
   // ============================================
@@ -1287,6 +1407,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "railgunner",
     dlc: "sotv",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/d9836a468de7ee2229c612764360784efb943b89.jpg",
   },
   {
     id: "voidfiend-mastery",
@@ -1297,6 +1418,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "voidfiend",
     dlc: "sotv",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/8d4b2422cbe444ebeb1f556e9b31a82ff9b50c0d.jpg",
   },
   {
     id: "seeker-mastery",
@@ -1307,6 +1429,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "seeker",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/ec14a34f2499289b7c03eb19af43aa9d37ee58e7.jpg",
   },
   {
     id: "chef-mastery",
@@ -1317,6 +1440,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "chef",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/28129f2cc820a97fd11c633e5a8e6877aa8084c2.jpg",
   },
   {
     id: "falseson-mastery",
@@ -1327,6 +1451,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "falseson",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/3af631d2ecc56778b317d4b125917d28f96ed9e5.jpg",
   },
   {
     id: "operator-mastery",
@@ -1337,6 +1462,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "operator",
     dlc: "ac",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/73cf50c702fd89c52ab76bbd833f3d6c9cfca92f.jpg",
   },
   {
     id: "drifter-mastery",
@@ -1347,6 +1473,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "drifter",
     dlc: "ac",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/0e01ef5e05db3a898d6f7d6e390d73c68128c941.jpg",
   },
 
   // ============================================
@@ -1361,6 +1488,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "commando",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/10ee7f100ffcfc334ec24eaba7d5a0cd29bbe774.jpg",
   },
   {
     id: "huntress-primemeridian",
@@ -1371,6 +1499,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "huntress",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/d3e8ed9f3da8d30643ec3613f7e9dd885756cfdd.jpg",
   },
   {
     id: "mult-primemeridian",
@@ -1381,6 +1510,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "mult",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/ca6dc99884433b83a0a68d294e6c5acfc84477d7.jpg",
   },
   {
     id: "engineer-primemeridian",
@@ -1391,6 +1521,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "engineer",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/f893340fb7ffd91b6117a89c6c2d36741ea23c81.jpg",
   },
   {
     id: "artificer-primemeridian",
@@ -1401,6 +1532,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "artificer",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/5a97b1d81860ced75b732b2ad43ade6e9c6f00af.jpg",
   },
   {
     id: "mercenary-primemeridian",
@@ -1411,6 +1543,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "mercenary",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/8ef664e97a8754810e7af0304cf6f9ed7b5ac603.jpg",
   },
   {
     id: "rex-primemeridian",
@@ -1421,6 +1554,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "rex",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/7616d5441c5c1a7ae46b1246547f2ad18669eb7c.jpg",
   },
   {
     id: "loader-primemeridian",
@@ -1431,6 +1565,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "loader",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/682832b2e546d9d570908d7fc0f3ba987e9fa88f.jpg",
   },
   {
     id: "acrid-primemeridian",
@@ -1441,6 +1576,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "acrid",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/a6f75a48c8da1950c2fa19db64f4dda99101463f.jpg",
   },
   {
     id: "captain-primemeridian",
@@ -1451,6 +1587,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "captain",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/48afb36adc34a33c03ba8e50bede2bef474686d4.jpg",
   },
   {
     id: "bandit-primemeridian",
@@ -1461,6 +1598,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "bandit",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/887c18928367480e30b721b3582c6a921139a71f.jpg",
   },
   {
     id: "railgunner-primemeridian",
@@ -1471,6 +1609,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "railgunner",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/49406bbb571dd24f174926863b757c1a47bc6317.jpg",
   },
   {
     id: "voidfiend-primemeridian",
@@ -1481,6 +1620,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "voidfiend",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/b24c335622656a8adf3dd710a107c869f13d4e21.jpg",
   },
 
   // ============================================
@@ -1495,6 +1635,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "commando",
     dlc: "ac",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/6a96f327290f1bbe50582e745d956308c4fe91bf.jpg",
   },
   {
     id: "huntress-purge",
@@ -1505,6 +1646,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "huntress",
     dlc: "ac",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/7e502bfa72c9f50c5699675d02794c4b6210b696.jpg",
   },
   {
     id: "mult-purge",
@@ -1515,6 +1657,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "mult",
     dlc: "ac",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/292aee798b1ff9ff6315aaca93484b0071ec09a1.jpg",
   },
   {
     id: "engineer-purge",
@@ -1525,6 +1668,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "engineer",
     dlc: "ac",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/053542336625ed65bdb8dae8bb98db8c45a8e6e7.jpg",
   },
   {
     id: "mercenary-purge",
@@ -1535,6 +1679,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "mercenary",
     dlc: "ac",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/1e72182343b60561b3acbcd9ae4486b4d399b4cf.jpg",
   },
   {
     id: "acrid-purge",
@@ -1545,6 +1690,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "acrid",
     dlc: "ac",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/0d17d3d75a205e4d738b5f54ac38aecf2a23d649.jpg",
   },
 
   // ============================================
@@ -1559,6 +1705,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "bandit",
     dlc: "ac",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/796ae737a149f94f7bf3e2ab07a0ab52d83406c8.jpg",
   },
   {
     id: "artificer-decompile",
@@ -1569,6 +1716,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "artificer",
     dlc: "ac",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/55c323f6c11b17d591469ba979f9ca3cab1d55fd.jpg",
   },
   {
     id: "loader-decompile",
@@ -1579,6 +1727,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "loader",
     dlc: "ac",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/d48708af28e6546e8bf0fe3beafbff5668228d65.jpg",
   },
   {
     id: "captain-decompile",
@@ -1589,6 +1738,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "captain",
     dlc: "ac",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/06cc46f4db2e15ff344afb74cb8cd40d5cf9d201.jpg",
   },
   {
     id: "rex-decompile",
@@ -1599,6 +1749,7 @@ export const challenges: Challenge[] = [
     category: "skins",
     survivor: "rex",
     dlc: "ac",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/d48708af28e6546e8bf0fe3beafbff5668228d65.jpg",
   },
 
   // ============================================
@@ -1612,6 +1763,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Artifacts.Honor"],
     category: "artifacts",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/eeb345c941ac01feb967f3af632e35dcfe4dc773.jpg",
   },
   {
     id: "artifact-command",
@@ -1621,6 +1773,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Artifacts.Command"],
     category: "artifacts",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/f88396917d385a425f02dba85f5db462cc53c020.jpg",
   },
   {
     id: "artifact-sacrifice",
@@ -1630,6 +1783,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Artifacts.Sacrifice"],
     category: "artifacts",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/7fc7f3c6696790d10c16e540635fdf2ac292fcb6.jpg",
   },
   {
     id: "artifact-swarms",
@@ -1639,6 +1793,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Artifacts.Swarms"],
     category: "artifacts",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/41532d8fb64e707951f5c34f167630b7f7a7a97d.jpg",
   },
   {
     id: "artifact-kin",
@@ -1648,6 +1803,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Artifacts.Kin"],
     category: "artifacts",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/0cbbaef83a57a2b0b40848973c70d1407337c18e.jpg",
   },
   {
     id: "artifact-dissonance",
@@ -1657,6 +1813,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Artifacts.Dissonance"],
     category: "artifacts",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/27ba9780f6be4679dd3162ec70847160b9e7d151.jpg",
   },
   {
     id: "artifact-glass",
@@ -1666,6 +1823,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Artifacts.Glass"],
     category: "artifacts",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/22cd0f43ad3cf260239a95f2eca3beb2d486cd76.jpg",
   },
   {
     id: "artifact-vengeance",
@@ -1675,6 +1833,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Artifacts.Vengeance"],
     category: "artifacts",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/f77fbc916c1445e1b53c7977b0b5fc29159d9ab2.jpg",
   },
   {
     id: "artifact-chaos",
@@ -1684,6 +1843,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Artifacts.Chaos"],
     category: "artifacts",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/76a9d8746704d66a862282b5ef16b64a5cf199cc.jpg",
   },
   {
     id: "artifact-death",
@@ -1693,6 +1853,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Artifacts.Death"],
     category: "artifacts",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/d04993cf8e5f1b6c5ce34364e7d43262f02550b8.jpg",
   },
   {
     id: "artifact-enigma",
@@ -1702,6 +1863,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Artifacts.Enigma"],
     category: "artifacts",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/f6ad0935eb2bab721fef80556778b3e4bd549f5a.jpg",
   },
   {
     id: "artifact-metamorphosis",
@@ -1711,6 +1873,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Artifacts.Metamorphosis"],
     category: "artifacts",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/6bacc2d61aff797aba5d6ba34f294844b1be72c5.jpg",
   },
   {
     id: "artifact-spite",
@@ -1720,6 +1883,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Artifacts.Spite"],
     category: "artifacts",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/e9cc254cdd780180e7e3e6938a48adc1d19f74e4.jpg",
   },
   {
     id: "artifact-soul",
@@ -1729,6 +1893,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Artifacts.Soul"],
     category: "artifacts",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/e8d6e3f35e65f87ed6799ce6ba8493a0c6353f80.jpg",
   },
   {
     id: "artifact-evolution",
@@ -1738,6 +1903,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Artifacts.Evolution"],
     category: "artifacts",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/39c8e4e936270b27df937411fadd1f28fbb3b09d.jpg",
   },
   {
     id: "artifact-frailty",
@@ -1747,6 +1913,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Artifacts.Frailty"],
     category: "artifacts",
     dlc: "base",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/66b7a45930baa64a5eda77c20d05ab5f4333090c.jpg",
   },
 
   // ============================================
@@ -1761,6 +1928,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Artifacts.Rebirth"],
     category: "artifacts",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/e6c2f27279a5cd7f395a5fa8df81c3f34a1cf121.jpg",
   },
   {
     id: "artifact-devotion",
@@ -1770,6 +1938,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Artifacts.Devotion"],
     category: "artifacts",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/8bdd7f3fc362666e1e77a3372df060a3e3f14498.jpg",
   },
   {
     id: "artifact-delusion",
@@ -1779,6 +1948,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Artifacts.Delusion"],
     category: "artifacts",
     dlc: "sots",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/3b84043904da84cbb6051e03f8cb0334ffd76cc6.jpg",
   },
   {
     id: "artifact-prestige",
@@ -1788,6 +1958,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Artifacts.Prestige"],
     category: "artifacts",
     dlc: "ac",
+    image: "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/66f0659c71746f654540cd4a59e1c0d3380f4e19.jpg",
   },
 
   // ============================================
@@ -1802,6 +1973,7 @@ export const challenges: Challenge[] = [
     category: "items",
     dlc: "ac",
     rarity: "boss",
+    image: "https://riskofrain2.wiki.gg/images/Faulty_Conductor.png",
   },
   {
     id: "functional-coupler-unlock",
@@ -1812,6 +1984,7 @@ export const challenges: Challenge[] = [
     category: "items",
     dlc: "ac",
     rarity: "boss",
+    image: "https://riskofrain2.wiki.gg/images/Functional_Coupler.png",
   },
   {
     id: "deus-ex-machina-unlock",
@@ -1821,6 +1994,7 @@ export const challenges: Challenge[] = [
     unlocks: ["Equipment.Parry"], // Deus Ex Machina - https://riskofrain2.wiki.gg/wiki/Deus_Ex_Machina
     category: "items",
     dlc: "ac",
+    image: "https://riskofrain2.wiki.gg/images/Deus_Ex_Machina.png",
   },
 ];
 

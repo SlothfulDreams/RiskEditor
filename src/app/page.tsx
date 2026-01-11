@@ -6,6 +6,7 @@ import { FileUpload } from "@/components/FileUpload";
 import { SaveEditor } from "@/components/SaveEditor";
 import type { RawUserProfile, SaveData } from "@/data/types";
 import { loadSaveFile } from "@/lib/save-operations";
+import { version } from "../../package.json";
 
 type AppState = "upload" | "editing";
 
@@ -85,7 +86,7 @@ export default function Home() {
               System Status
             </div>
             <div className="text-xs text-ror-blue-accent font-mono">
-              {"ONLINE // V.1.0.0"}
+              {`ONLINE // V.${version}`}
             </div>
           </div>
         </div>

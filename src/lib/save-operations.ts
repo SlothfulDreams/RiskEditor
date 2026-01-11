@@ -101,7 +101,13 @@ export function toggleAchievement(
       // Sync related logbook entries (only if no other challenge provides them)
       const relatedEntries = getLogbookEntriesForChallenge(challenge.id);
       for (const entry of relatedEntries) {
-        if (!isLogbookEntryProvidedByOtherChallenge(entry, achievementId, achievements)) {
+        if (
+          !isLogbookEntryProvidedByOtherChallenge(
+            entry,
+            achievementId,
+            achievements,
+          )
+        ) {
           viewedViewables.delete(entry.unlockId);
           unlocks.delete(entry.unlockId);
           if (entry.pickupId) {
@@ -185,10 +191,10 @@ export function lockAll(saveData: SaveData): SaveData {
 
   // Remove challenge-linked logbook entries from viewedViewables and discoveredPickups
   const viewedViewables = saveData.viewedViewables.filter(
-    (id) => !challengeLinkedLogbookUnlockIds.has(id)
+    (id) => !challengeLinkedLogbookUnlockIds.has(id),
   );
   const discoveredPickups = saveData.discoveredPickups.filter(
-    (id) => !challengeLinkedPickupIds.has(id)
+    (id) => !challengeLinkedPickupIds.has(id),
   );
 
   return {
@@ -501,6 +507,7 @@ export function calculateLogbookStats(saveData: SaveData): {
   survivors: { total: number; unlocked: number };
   items: { total: number; unlocked: number };
   equipment: { total: number; unlocked: number };
+  drones: { total: number; unlocked: number };
 } {
   const stats = {
     totalEntries: logbookEntries.length,
@@ -510,6 +517,7 @@ export function calculateLogbookStats(saveData: SaveData): {
     survivors: { total: 0, unlocked: 0 },
     items: { total: 0, unlocked: 0 },
     equipment: { total: 0, unlocked: 0 },
+    drones: { total: 0, unlocked: 0 },
   };
 
   for (const entry of logbookEntries) {

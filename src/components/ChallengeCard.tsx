@@ -3,11 +3,10 @@
 import { motion } from "framer-motion";
 import { Book, Check, Lock } from "lucide-react";
 import Image from "next/image";
-import {
-  DEFAULT_ACHIEVEMENT_IMAGE,
-  getAchievementImage,
-} from "@/data/achievement-images";
 import type { Challenge } from "@/data/types";
+
+const DEFAULT_ACHIEVEMENT_IMAGE =
+  "https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/632360/3ebb5f75a716aa6fcab12b7354c3b87e971bcfd5.jpg";
 
 interface ChallengeCardProps {
   challenge: Challenge;
@@ -26,8 +25,7 @@ export function ChallengeCard({
     onToggle(challenge.achievement, !isUnlocked);
   };
 
-  const imageUrl =
-    getAchievementImage(challenge.achievement) || DEFAULT_ACHIEVEMENT_IMAGE;
+  const imageUrl = challenge.image || DEFAULT_ACHIEVEMENT_IMAGE;
 
   const rarityColorClass = getRarityColorClass(challenge.rarity);
   const borderColorClass = isUnlocked

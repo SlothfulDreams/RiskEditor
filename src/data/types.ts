@@ -40,7 +40,8 @@ export type LogbookCategory =
   | "environments"
   | "survivors"
   | "items"
-  | "equipment";
+  | "equipment"
+  | "drones";
 
 export const LOGBOOK_CATEGORY_NAMES: Record<LogbookCategory, string> = {
   monsters: "Monster Logs",
@@ -48,6 +49,7 @@ export const LOGBOOK_CATEGORY_NAMES: Record<LogbookCategory, string> = {
   survivors: "Survivor Logs",
   items: "Items",
   equipment: "Equipment",
+  drones: "Drones",
 };
 
 // Logbook entry definition
@@ -74,6 +76,7 @@ export interface Challenge {
   survivor?: string; // Associated survivor ID (for skills/skins)
   dlc: DLC;
   rarity?: ItemRarity; // For items
+  image?: string; // Steam achievement image URL
 }
 
 // Survivor definition

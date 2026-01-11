@@ -6,218 +6,218 @@
 @import "@fontsource/jetbrains-mono/500.css";
 
 :root {
-    /* RoR2 Palette */
-    --ror-bg-main: #131519;
-    --ror-bg-panel: #1e2129;
-    --ror-bg-header: #2a2e38;
+  /* RoR2 Palette */
+  --ror-bg-main: #131519;
+  --ror-bg-panel: #1e2129;
+  --ror-bg-header: #2a2e38;
 
-    --ror-text-main: #e3e0d6;
-    --ror-text-muted: #8f9aa8;
-    --ror-text-dim: #5a6370;
+  --ror-text-main: #e3e0d6;
+  --ror-text-muted: #8f9aa8;
+  --ror-text-dim: #5a6370;
 
-    --ror-border: #3e4656;
-    --ror-border-highlight: #6c7b95;
+  --ror-border: #3e4656;
+  --ror-border-highlight: #6c7b95;
 
-    /* Rarity/Accent Colors */
-    --ror-common: #c8c8c8; /* White/Grey */
-    --ror-uncommon: #95c561; /* Green */
-    --ror-legendary: #d95f5f; /* Red */
-    --ror-boss: #e5c966; /* Yellow */
-    --ror-lunar: #8da6e8; /* Blue */
-    --ror-void: #b17bd9; /* Purple */
-    --ror-equipment: #ff9600; /* Orange */
+  /* Rarity/Accent Colors */
+  --ror-common: #c8c8c8; /* White/Grey */
+  --ror-uncommon: #95c561; /* Green */
+  --ror-legendary: #d95f5f; /* Red */
+  --ror-boss: #e5c966; /* Yellow */
+  --ror-lunar: #8da6e8; /* Blue */
+  --ror-void: #b17bd9; /* Purple */
+  --ror-equipment: #ff9600; /* Orange */
 
-    --ror-blue-accent: #8da6e8;
-    --ror-orange-accent: #f2a95c;
+  --ror-blue-accent: #8da6e8;
+  --ror-orange-accent: #f2a95c;
 
-    /* Fonts */
-    --font-display:
-        "Orbitron", sans-serif; /* Keeping Orbitron for now as it fits the sci-fi feel, can swap if needed */
-    --font-mono: "JetBrains Mono", monospace;
+  /* Fonts */
+  --font-display:
+    "Orbitron", sans-serif; /* Keeping Orbitron for now as it fits the sci-fi feel, can swap if needed */
+  --font-mono: "JetBrains Mono", monospace;
 }
 
 @theme inline {
-    --color-ror-bg-main: var(--ror-bg-main);
-    --color-ror-bg-panel: var(--ror-bg-panel);
-    --color-ror-bg-header: var(--ror-bg-header);
-    --color-ror-text-main: var(--ror-text-main);
-    --color-ror-text-muted: var(--ror-text-muted);
-    --color-ror-text-dim: var(--ror-text-dim);
-    --color-ror-border: var(--ror-border);
-    --color-ror-border-highlight: var(--ror-border-highlight);
-    --color-ror-common: var(--ror-common);
-    --color-ror-uncommon: var(--ror-uncommon);
-    --color-ror-legendary: var(--ror-legendary);
-    --color-ror-boss: var(--ror-boss);
-    --color-ror-lunar: var(--ror-lunar);
-    --color-ror-void: var(--ror-void);
-    --color-ror-equipment: var(--ror-equipment);
-    --color-ror-blue-accent: var(--ror-blue-accent);
-    --color-ror-orange-accent: var(--ror-orange-accent);
+  --color-ror-bg-main: var(--ror-bg-main);
+  --color-ror-bg-panel: var(--ror-bg-panel);
+  --color-ror-bg-header: var(--ror-bg-header);
+  --color-ror-text-main: var(--ror-text-main);
+  --color-ror-text-muted: var(--ror-text-muted);
+  --color-ror-text-dim: var(--ror-text-dim);
+  --color-ror-border: var(--ror-border);
+  --color-ror-border-highlight: var(--ror-border-highlight);
+  --color-ror-common: var(--ror-common);
+  --color-ror-uncommon: var(--ror-uncommon);
+  --color-ror-legendary: var(--ror-legendary);
+  --color-ror-boss: var(--ror-boss);
+  --color-ror-lunar: var(--ror-lunar);
+  --color-ror-void: var(--ror-void);
+  --color-ror-equipment: var(--ror-equipment);
+  --color-ror-blue-accent: var(--ror-blue-accent);
+  --color-ror-orange-accent: var(--ror-orange-accent);
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
-    background: var(--ror-bg-main);
+  background: var(--ror-bg-main);
 }
 
 body {
-    background: var(--ror-bg-main);
-    color: var(--ror-text-main);
-    font-family: var(--font-mono);
-    min-height: 100vh;
-    overflow-x: hidden;
+  background: var(--ror-bg-main);
+  color: var(--ror-text-main);
+  font-family: var(--font-mono);
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--ror-bg-main);
+  background: var(--ror-bg-main);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--ror-border);
-    border: 1px solid var(--ror-bg-main);
+  background: var(--ror-border);
+  border: 1px solid var(--ror-bg-main);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--ror-border-highlight);
+  background: var(--ror-border-highlight);
 }
 
 /* Selection */
 ::selection {
-    background: rgba(141, 166, 232, 0.3);
-    color: var(--ror-text-main);
+  background: rgba(141, 166, 232, 0.3);
+  color: var(--ror-text-main);
 }
 
 /* Display font utility */
 .font-display {
-    font-family: var(--font-display);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+  font-family: var(--font-display);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 /* RoR2 Card Style */
 .ror-card {
-    background: var(--ror-bg-panel);
-    border: 1px solid var(--ror-border);
-    position: relative;
-    transition: border-color 0.2s ease;
+  background: var(--ror-bg-panel);
+  border: 1px solid var(--ror-border);
+  position: relative;
+  transition: border-color 0.2s ease;
 }
 
 .ror-card:hover {
-    border-color: var(--ror-border-highlight);
+  border-color: var(--ror-border-highlight);
 }
 
 /* RoR2 Button Style */
 .ror-button {
-    background: var(--ror-bg-header);
-    border: 1px solid var(--ror-border);
-    color: var(--ror-text-main);
-    font-family: var(--font-display);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 0.5rem 1rem;
-    transition: all 0.2s ease;
-    position: relative;
-    overflow: hidden;
+  background: var(--ror-bg-header);
+  border: 1px solid var(--ror-border);
+  color: var(--ror-text-main);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .ror-button:hover:not(:disabled) {
-    background: var(--ror-border);
-    border-color: var(--ror-text-muted);
-    color: #fff;
+  background: var(--ror-border);
+  border-color: var(--ror-text-muted);
+  color: #fff;
 }
 
 .ror-button:active:not(:disabled) {
-    background: var(--ror-border-highlight);
+  background: var(--ror-border-highlight);
 }
 
 .ror-button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    filter: grayscale(100%);
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(100%);
 }
 
 /* RoR2 Input Style */
 .ror-input {
-    background: var(--ror-bg-main);
-    border: 1px solid var(--ror-border);
-    color: var(--ror-text-main);
-    font-family: var(--font-mono);
-    padding: 0.5rem;
-    transition: border-color 0.2s ease;
+  background: var(--ror-bg-main);
+  border: 1px solid var(--ror-border);
+  color: var(--ror-text-main);
+  font-family: var(--font-mono);
+  padding: 0.5rem;
+  transition: border-color 0.2s ease;
 }
 
 .ror-input:focus {
-    outline: none;
-    border-color: var(--ror-orange-accent);
+  outline: none;
+  border-color: var(--ror-orange-accent);
 }
 
 /* Grid background pattern - subtle industrial grid */
 .grid-bg {
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
 /* Rarity Text Colors */
 .text-common {
-    color: var(--ror-common);
+  color: var(--ror-common);
 }
 .text-uncommon {
-    color: var(--ror-uncommon);
+  color: var(--ror-uncommon);
 }
 .text-legendary {
-    color: var(--ror-legendary);
+  color: var(--ror-legendary);
 }
 .text-boss {
-    color: var(--ror-boss);
+  color: var(--ror-boss);
 }
 .text-lunar {
-    color: var(--ror-lunar);
+  color: var(--ror-lunar);
 }
 .text-void {
-    color: var(--ror-void);
+  color: var(--ror-void);
 }
 .text-equipment {
-    color: var(--ror-equipment);
+  color: var(--ror-equipment);
 }
 
 /* Rarity Backgrounds (for badges/tags) */
 .bg-common {
-    background: rgba(200, 200, 200, 0.1);
-    border-color: var(--ror-common);
+  background: rgba(200, 200, 200, 0.1);
+  border-color: var(--ror-common);
 }
 .bg-uncommon {
-    background: rgba(149, 197, 97, 0.1);
-    border-color: var(--ror-uncommon);
+  background: rgba(149, 197, 97, 0.1);
+  border-color: var(--ror-uncommon);
 }
 .bg-legendary {
-    background: rgba(217, 95, 95, 0.1);
-    border-color: var(--ror-legendary);
+  background: rgba(217, 95, 95, 0.1);
+  border-color: var(--ror-legendary);
 }
 .bg-boss {
-    background: rgba(229, 201, 102, 0.1);
-    border-color: var(--ror-boss);
+  background: rgba(229, 201, 102, 0.1);
+  border-color: var(--ror-boss);
 }
 .bg-lunar {
-    background: rgba(141, 166, 232, 0.1);
-    border-color: var(--ror-lunar);
+  background: rgba(141, 166, 232, 0.1);
+  border-color: var(--ror-lunar);
 }
 .bg-void {
-    background: rgba(177, 123, 217, 0.1);
-    border-color: var(--ror-void);
+  background: rgba(177, 123, 217, 0.1);
+  border-color: var(--ror-void);
 }
 .bg-equipment {
-    background: rgba(255, 150, 0, 0.1);
-    border-color: var(--ror-equipment);
+  background: rgba(255, 150, 0, 0.1);
+  border-color: var(--ror-equipment);
 }

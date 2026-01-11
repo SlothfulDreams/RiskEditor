@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Book, Check, Lock, Trophy } from "lucide-react";
 import Image from "next/image";
 import type { LogbookEntry } from "@/data/types";
-import { getLogbookImage } from "@/data/logbook-images";
 
 interface LogbookCardProps {
   entry: LogbookEntry;
@@ -23,7 +22,7 @@ export function LogbookCard({
     onToggle(entry, !isUnlocked);
   };
 
-  const imageUrl = getLogbookImage(entry.id);
+  const imageUrl = entry.image;
   const categoryColor = getCategoryColor(entry.category);
   const rarityColorClass = entry.rarity
     ? getRarityColorClass(entry.rarity)
@@ -83,7 +82,9 @@ export function LogbookCard({
           ) : (
             <Book
               size={20}
-              className={isUnlocked ? "text-ror-text-main" : "text-ror-text-dim"}
+              className={
+                isUnlocked ? "text-ror-text-main" : "text-ror-text-dim"
+              }
             />
           )}
           {!isUnlocked && (
@@ -164,6 +165,8 @@ function getCategoryColor(category: string): string {
       return "bg-ror-common";
     case "equipment":
       return "bg-ror-equipment";
+    case "drones":
+      return "bg-ror-blue-accent";
     default:
       return "bg-ror-border";
   }
@@ -202,6 +205,8 @@ function getCategoryStyle(category: string): string {
       return "border-ror-border text-ror-text-dim bg-ror-bg-main";
     case "equipment":
       return "border-ror-equipment/50 text-ror-equipment bg-ror-equipment/10";
+    case "drones":
+      return "border-ror-blue-accent/50 text-ror-blue-accent bg-ror-blue-accent/10";
     default:
       return "border-ror-border text-ror-text-dim bg-ror-bg-main";
   }
@@ -219,6 +224,8 @@ function getCategoryLabel(category: string): string {
       return "Item";
     case "equipment":
       return "Equip";
+    case "drones":
+      return "Drone";
     default:
       return category;
   }
