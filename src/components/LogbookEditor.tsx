@@ -56,7 +56,7 @@ const containerVariants = {
 const GridContainer = ({ children, ...props }: any) => (
   <div
     {...props}
-    className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3 pr-2 pb-4"
+    className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3"
   >
     {children}
   </div>
@@ -465,12 +465,7 @@ export function LogbookEditor({
             itemContent={(index) => {
               const entry = filteredEntries[index];
               return (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.2 }}
-                  className="h-full"
-                >
+                <div className="h-full">
                   <LogbookCard
                     entry={entry}
                     isUnlocked={isLogbookEntryUnlocked(saveData, entry)}
@@ -479,7 +474,7 @@ export function LogbookEditor({
                       entry.id,
                     )}
                   />
-                </motion.div>
+                </div>
               );
             }}
           />
