@@ -63,7 +63,7 @@ const GridContainer = ({ children, ...props }: any) => (
 );
 
 const ItemContainer = ({ children, ...props }: any) => (
-  <div {...props} className="h-full relative transition-all duration-300">
+  <div {...props} className="h-full relative">
     {children}
   </div>
 );
@@ -461,6 +461,7 @@ export function LogbookEditor({
             components={{
               List: GridContainer,
               Item: ItemContainer,
+              Footer: () => <div className="h-8" />,
             }}
             itemContent={(index) => {
               const entry = filteredEntries[index];

@@ -73,14 +73,14 @@ const itemVariants = {
 const GridContainer = ({ children, ...props }: any) => (
   <div
     {...props}
-    className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3 pr-2 pb-4"
+    className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3"
   >
     {children}
   </div>
 );
 
 const ItemContainer = ({ children, ...props }: any) => (
-  <div {...props} className="h-full relative transition-all duration-300">
+  <div {...props} className="h-full relative">
     {children}
   </div>
 );
@@ -599,16 +599,12 @@ export function SaveEditor({
                   components={{
                     List: GridContainer,
                     Item: ItemContainer,
+                    Footer: () => <div className="h-8" />,
                   }}
                   itemContent={(index) => {
                     const challenge = filteredChallenges[index];
                     return (
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.2 }}
-                        className="h-full"
-                      >
+                      <div className="h-full">
                         <ChallengeCard
                           challenge={challenge}
                           isUnlocked={saveData.achievements.includes(
@@ -619,7 +615,7 @@ export function SaveEditor({
                             challenge.id,
                           )}
                         />
-                      </motion.div>
+                      </div>
                     );
                   }}
                 />
