@@ -1208,7 +1208,7 @@ export const logbookEntries: LogbookEntry[] = [
     pickupId: "ItemIndex.WarCryOnMultiKill",
     dlc: "base",
     rarity: "common",
-    image: "/images/logbook/Berserker's_Pauldron.png",
+    image: "/images/logbook/Berzerker's_Pauldron.webp",
   },
   {
     id: "item-gasoline",
