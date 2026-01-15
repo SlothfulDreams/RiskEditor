@@ -1542,7 +1542,7 @@ export const logbookEntries: LogbookEntry[] = [
     pickupId: "ItemIndex.CookedSteak", // Assuming this is the correct legacy ID
     dlc: "base",
     rarity: "uncommon",
-    image: "/images/logbook/item-regenonkill.png",
+    image: "/images/logbook/item-regenonkill.webp",
   },
   {
     id: "item-increasehealing",
@@ -3386,7 +3386,7 @@ export const logbookEntries: LogbookEntry[] = [
     category: "monsters",
     unlockId: "/Logbook/LOGBOOK_CATEGORY_MONSTER/ROBOBALLMINI_BODY_NAME",
     dlc: "base",
-    image: "/images/logbook/solus-distributer.png"
+    image: "/images/logbook/solus-distributer.webp"
   },
 
   {
@@ -3396,7 +3396,7 @@ export const logbookEntries: LogbookEntry[] = [
     unlockId: "/Logbook/LOGBOOK_CATEGORY_DRONE/DRONE_BACKUP_BODY_NAME",
     pickupId: "DroneIndex.BackupDrone",
     dlc: "base",
-    image: "/images/logbook/strike-drone.png"
+    image: "/images/logbook/strike-drone.webp"
   },
 
   {
