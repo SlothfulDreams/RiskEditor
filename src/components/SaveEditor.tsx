@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { VirtuosoGrid } from "react-virtuoso";
+import { PaginationControls } from "./PaginationControls";
 import {
   Book,
   Download,
@@ -55,6 +55,12 @@ const categories: (ChallengeCategory | "all")[] = [
 
 const dlcs: (DLC | "all")[] = ["all", "base", "sotv", "sots", "ac"];
 
+const ScrollSeekPlaceholder = ({ height, width, index }: any) => (
+  <div className="h-full w-full ror-card bg-ror-bg-main/50 border border-ror-border opacity-50 flex items-center justify-center">
+    <div className="w-12 h-12 bg-black/20 rounded-full" />
+  </div>
+);
+
 const containerVariants = {
   hidden: { opacity: 0 },
   show: {
@@ -70,13 +76,19 @@ const itemVariants = {
   show: { opacity: 1, y: 0 },
 };
 
+const PAGE_SIZE = 24;
+
 const GridContainer = ({ children, ...props }: any) => (
-  <div
+  <motion.div
+    variants={containerVariants}
+    initial="hidden"
+    animate="show"
+    key={props.key}
     {...props}
     className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3"
   >
     {children}
-  </div>
+  </motion.div>
 );
 
 const ItemContainer = ({ children, ...props }: any) => (
@@ -99,6 +111,7 @@ export function SaveEditor({
   >("all");
   const [selectedDLC, setSelectedDLC] = useState<DLC | "all">("all");
   const [selectedStatus, setSelectedStatus] = useState<"all" | "unlocked" | "locked">("all");
+  const [currentPage, setCurrentPage] = useState(1);
   const [hasChanges, setHasChanges] = useState(false);
   const [activeTab, setActiveTab] = useState<"achievements" | "logbook">(
     "achievements",
@@ -138,6 +151,18 @@ export function SaveEditor({
     }
     return true;
   });
+
+  // Calculate Pagination
+  const totalPages = Math.ceil(filteredChallenges.length / PAGE_SIZE);
+  const currentChallenges = filteredChallenges.slice(
+    (currentPage - 1) * PAGE_SIZE,
+    currentPage * PAGE_SIZE
+  );
+
+  // Reset page
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, selectedCategory, selectedDLC, selectedStatus]);
 
   const unlockedInView = filteredChallenges.filter((c) =>
     saveData.achievements.includes(c.achievement),
@@ -591,33 +616,30 @@ export function SaveEditor({
                 NO DATA FOUND
               </motion.div>
             ) : (
-              <div style={{ height: "calc(100vh - 200px)", width: "100%" }}>
-                <VirtuosoGrid
-                  style={{ height: "100%" }}
-                  totalCount={filteredChallenges.length}
-                  overscan={200}
-                  components={{
-                    List: GridContainer,
-                    Item: ItemContainer,
-                    Footer: () => <div className="h-8" />,
-                  }}
-                  itemContent={(index) => {
-                    const challenge = filteredChallenges[index];
-                    return (
+              <div className="flex flex-col gap-6">
+                <GridContainer key={currentPage + selectedCategory}>
+                  {currentChallenges.map((challenge) => (
+                    <ItemContainer key={challenge.id}>
                       <div className="h-full">
                         <ChallengeCard
                           challenge={challenge}
                           isUnlocked={saveData.achievements.includes(
-                            challenge.achievement,
+                            challenge.achievement
                           )}
                           onToggle={handleToggleAchievement}
                           linkedLogbookCount={getLogbookCountForChallenge(
-                            challenge.id,
+                            challenge.id
                           )}
                         />
                       </div>
-                    );
-                  }}
+                    </ItemContainer>
+                  ))}
+                </GridContainer>
+
+                <PaginationControls
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={setCurrentPage}
                 />
               </div>
             )}

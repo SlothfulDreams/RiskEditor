@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { VirtuosoGrid } from "react-virtuoso";
+import { PaginationControls } from "./PaginationControls";
 import { Book, Search, X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { logbookEntries } from "@/data/logbook-entries";
@@ -43,6 +43,8 @@ const categories: (LogbookCategory | "all")[] = [
 
 const dlcs: (DLC | "all")[] = ["all", "base", "sotv", "sots", "ac"];
 
+const PAGE_SIZE = 24;
+
 const containerVariants = {
   hidden: { opacity: 0 },
   show: {
@@ -54,12 +56,16 @@ const containerVariants = {
 };
 
 const GridContainer = ({ children, ...props }: any) => (
-  <div
+  <motion.div
+    variants={containerVariants}
+    initial="hidden"
+    animate="show"
+    key={props.key} // Use key to trigger re-animation on page change
     {...props}
     className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3"
   >
     {children}
-  </div>
+  </motion.div>
 );
 
 const ItemContainer = ({ children, ...props }: any) => (
@@ -79,6 +85,7 @@ export function LogbookEditor({
   >("all");
   const [selectedDLC, setSelectedDLC] = useState<DLC | "all">("all");
   const [selectedStatus, setSelectedStatus] = useState<"all" | "discovered" | "missing">("all");
+  const [currentPage, setCurrentPage] = useState(1);
 
   // DLC Prompt Logic
   const [dlcOwnership, setDlcOwnership] = useState<Record<string, boolean>>({
@@ -115,6 +122,18 @@ export function LogbookEditor({
     }
     return true;
   });
+
+  // Calculate Pagination
+  const totalPages = Math.ceil(filteredEntries.length / PAGE_SIZE);
+  const currentEntries = filteredEntries.slice(
+    (currentPage - 1) * PAGE_SIZE,
+    currentPage * PAGE_SIZE
+  );
+
+  // Reset page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, selectedCategory, selectedDLC, selectedStatus]);
 
   const unlockedInView = filteredEntries.filter((entry) =>
     isLogbookEntryUnlocked(saveData, entry),
@@ -453,31 +472,28 @@ export function LogbookEditor({
           NO DATA FOUND
         </motion.div>
       ) : (
-        <div style={{ height: "calc(100vh - 320px)", width: "100%" }}>
-          <VirtuosoGrid
-            style={{ height: "100%" }}
-            totalCount={filteredEntries.length}
-            overscan={200}
-            components={{
-              List: GridContainer,
-              Item: ItemContainer,
-              Footer: () => <div className="h-8" />,
-            }}
-            itemContent={(index) => {
-              const entry = filteredEntries[index];
-              return (
+        <div className="flex flex-col gap-6">
+          <GridContainer key={currentPage + selectedCategory}>
+            {currentEntries.map((entry) => (
+              <ItemContainer key={entry.id}>
                 <div className="h-full">
                   <LogbookCard
                     entry={entry}
                     isUnlocked={isLogbookEntryUnlocked(saveData, entry)}
                     onToggle={handleToggleEntry}
                     linkedChallengeCount={getChallengeCountForLogbookEntry(
-                      entry.id,
+                      entry.id
                     )}
                   />
                 </div>
-              );
-            }}
+              </ItemContainer>
+            ))}
+          </GridContainer>
+
+          <PaginationControls
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
           />
         </div>
       )}
