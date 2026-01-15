@@ -150,6 +150,40 @@ export function applySaveData(
     result.UserProfile.stats.unlock = saveData.unlocks;
   }
 
+  // Update stats map - merge with existing stats
+  const existingStats = result.UserProfile.stats?.stat;
+  const existingStatsArray = Array.isArray(existingStats)
+    ? existingStats
+    : existingStats
+      ? [existingStats]
+      : [];
+
+  // Build a map of all stats (existing + new/updated from saveData)
+  const statsMap = new Map<string, RawStat>();
+
+  // First, add all existing stats
+  for (const stat of existingStatsArray) {
+    if (stat["@_name"]) {
+      statsMap.set(stat["@_name"], stat);
+    }
+  }
+
+  // Then override/add stats from saveData
+  saveData.stats.forEach((value, name) => {
+    statsMap.set(name, {
+      "@_name": name,
+      "#text": value,
+    });
+  });
+
+  // Convert map back to array and set in result
+  const finalStats = Array.from(statsMap.values());
+  if (finalStats.length === 1) {
+    result.UserProfile.stats.stat = finalStats[0];
+  } else if (finalStats.length > 1) {
+    result.UserProfile.stats.stat = finalStats;
+  }
+
   // Update logbook fields (space-separated)
   result.UserProfile.viewedViewables = saveData.viewedViewables.join(" ");
   result.UserProfile.discoveredPickups = saveData.discoveredPickups.join(" ");

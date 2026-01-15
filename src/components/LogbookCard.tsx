@@ -111,7 +111,7 @@ export function LogbookCard({
               animate={{
                 backgroundColor: isUnlocked
                   ? "var(--ror-uncommon)"
-                  : "transparent",
+                  : "rgba(0, 0, 0, 0)",
                 borderColor: isUnlocked
                   ? "var(--ror-uncommon)"
                   : "var(--ror-border)",
