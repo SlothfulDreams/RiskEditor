@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { PaginationControls } from "./PaginationControls";
 import { Book, Search, X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { logbookEntries } from "@/data/logbook-entries";
@@ -15,11 +16,15 @@ import { getChallengeCountForLogbookEntry } from "@/lib/challenge-logbook-mappin
 import {
   calculateLogbookStats,
   isLogbookEntryUnlocked,
-  lockAllLogbook,
   toggleLogbookEntry,
   unlockAllLogbook,
+  lockAllLogbook,
+  toggleAchievement,
 } from "@/lib/save-operations";
 import { LogbookCard } from "./LogbookCard";
+import { DLCPromptModal } from "./DLCPromptModal";
+import { BulkDLCPromptModal } from "./BulkDLCPromptModal";
+import { getAchievementForSurvivorLogbook } from "@/lib/survivor-achievement-mapping";
 
 interface LogbookEditorProps {
   saveData: SaveData;
@@ -33,9 +38,12 @@ const categories: (LogbookCategory | "all")[] = [
   "survivors",
   "items",
   "equipment",
+  "drones",
 ];
 
 const dlcs: (DLC | "all")[] = ["all", "base", "sotv", "sots", "ac"];
+
+const PAGE_SIZE = 24;
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -47,6 +55,25 @@ const containerVariants = {
   },
 };
 
+const GridContainer = ({ children, ...props }: any) => (
+  <motion.div
+    variants={containerVariants}
+    initial="hidden"
+    animate="show"
+    key={props.key} // Use key to trigger re-animation on page change
+    {...props}
+    className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3"
+  >
+    {children}
+  </motion.div>
+);
+
+const ItemContainer = ({ children, ...props }: any) => (
+  <div {...props} className="h-full relative">
+    {children}
+  </div>
+);
+
 export function LogbookEditor({
   saveData,
   onSaveDataChange,
@@ -57,6 +84,16 @@ export function LogbookEditor({
     LogbookCategory | "all"
   >("all");
   const [selectedDLC, setSelectedDLC] = useState<DLC | "all">("all");
+  const [selectedStatus, setSelectedStatus] = useState<"all" | "discovered" | "missing">("all");
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // DLC Prompt Logic
+  const [dlcOwnership, setDlcOwnership] = useState<Record<string, boolean>>({
+    base: true,
+  });
+  const [pendingEntry, setPendingEntry] = useState<LogbookEntry | null>(null);
+  const [isPromptOpen, setIsPromptOpen] = useState(false);
+  const [isBulkPromptOpen, setIsBulkPromptOpen] = useState(false);
 
   // Debounce search
   useEffect(() => {
@@ -71,6 +108,10 @@ export function LogbookEditor({
     if (selectedCategory !== "all" && entry.category !== selectedCategory)
       return false;
     if (selectedDLC !== "all" && entry.dlc !== selectedDLC) return false;
+    // Status filter
+    const isUnlocked = isLogbookEntryUnlocked(saveData, entry);
+    if (selectedStatus === "discovered" && !isUnlocked) return false;
+    if (selectedStatus === "missing" && isUnlocked) return false;
     if (debouncedSearch) {
       const q = debouncedSearch.toLowerCase();
       return (
@@ -82,20 +123,146 @@ export function LogbookEditor({
     return true;
   });
 
+  // Calculate Pagination
+  const totalPages = Math.ceil(filteredEntries.length / PAGE_SIZE);
+  const currentEntries = filteredEntries.slice(
+    (currentPage - 1) * PAGE_SIZE,
+    currentPage * PAGE_SIZE
+  );
+
+  // Reset page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, selectedCategory, selectedDLC, selectedStatus]);
+
   const unlockedInView = filteredEntries.filter((entry) =>
     isLogbookEntryUnlocked(saveData, entry),
   ).length;
 
   const handleToggleEntry = useCallback(
     (entry: LogbookEntry, enabled: boolean) => {
-      onSaveDataChange(toggleLogbookEntry(saveData, entry, enabled));
+      // Locking: Just toggle off logic (standard)
+      if (!enabled) {
+        onSaveDataChange(toggleLogbookEntry(saveData, entry, false));
+        return;
+      }
+
+      // Unlocking: Check DLC
+      if (entry.dlc !== "base") {
+        const isOwned = dlcOwnership[entry.dlc];
+        if (isOwned === undefined) {
+          // Unknown ownership -> Prompt
+          setPendingEntry(entry);
+          setIsPromptOpen(true);
+          return;
+        }
+        if (isOwned === false) {
+          // Known Not Owned -> Unlock visual logbook only (as requested "unlock logbook") 
+          // but skip linked achievement to respect ownership?
+          // The user said: "mở khoá survivor trong logbooks sẽ tự tích thêm vào phần achievements ... 
+          // (thêm cảnh báo ... bạn có dlc này ko) có thì sẽ ko hỏi thêm nữa".
+          // This implies positive flow. If negative, standard logbook unlock is safe.
+          onSaveDataChange(toggleLogbookEntry(saveData, entry, true));
+          return;
+        }
+      }
+
+      // Proceed with unlock (Base or Owned DLC)
+      let newData = toggleLogbookEntry(saveData, entry, true);
+
+      // Link Linked Achievement (for Survivors)
+      if (entry.category === "survivors") {
+        const achievement = getAchievementForSurvivorLogbook(entry);
+        if (achievement) {
+          newData = toggleAchievement(newData, achievement.achievement, true);
+        }
+      }
+      onSaveDataChange(newData);
+    },
+    [saveData, onSaveDataChange, dlcOwnership],
+  );
+
+  const confirmPendingEntry = useCallback(() => {
+    if (!pendingEntry) return;
+
+    // User confirmed ownership
+    setDlcOwnership((prev) => ({ ...prev, [pendingEntry.dlc]: true }));
+    setIsPromptOpen(false);
+
+    // Proceed unlock with ownership now TRUE
+    let newData = toggleLogbookEntry(saveData, pendingEntry, true);
+    if (pendingEntry.category === "survivors") {
+      const achievement = getAchievementForSurvivorLogbook(pendingEntry);
+      if (achievement) {
+        newData = toggleAchievement(newData, achievement.achievement, true);
+      }
+    }
+    onSaveDataChange(newData);
+    setPendingEntry(null);
+  }, [pendingEntry, saveData, onSaveDataChange]);
+
+  const denyPendingEntry = useCallback(() => {
+    if (!pendingEntry) return;
+
+    // User denied ownership
+    setDlcOwnership((prev) => ({ ...prev, [pendingEntry.dlc]: false }));
+    setIsPromptOpen(false);
+
+    // Proceed unlock visual only (no achievement link)
+    onSaveDataChange(toggleLogbookEntry(saveData, pendingEntry, true));
+    setPendingEntry(null);
+  }, [pendingEntry, saveData, onSaveDataChange]);
+
+  const handleUnlockAllClick = useCallback(() => {
+    // Check if we need to ask for any DLCs
+    const unknowns = ["sotv", "sots", "ac"].some(
+      (dlc) => dlcOwnership[dlc] === undefined,
+    );
+
+    if (unknowns) {
+      setIsBulkPromptOpen(true);
+    } else {
+      // All known, proceed
+      performBulkUnlock(dlcOwnership);
+    }
+  }, [dlcOwnership]);
+
+
+  const performBulkUnlock = useCallback(
+    (ownershipObj: Record<string, boolean>) => {
+      // 1. Unlock All Logbook Entries (filtered by DLC)
+      let newData = unlockAllLogbook(saveData, ownershipObj);
+
+      // 2. Unlock Linked Achievements for Survivors (manually for now as unlockAllLogbook doesn't do survivors<->achievements)
+      // Iterate all survivor entries
+      for (const entry of logbookEntries) {
+        if (
+          entry.category === "survivors" &&
+          (entry.dlc === "base" || ownershipObj[entry.dlc])
+        ) {
+          const achievement = getAchievementForSurvivorLogbook(entry);
+          if (achievement) {
+            // We need to confirm if we should unlock?
+            // unlockAllLogbook unlocked the log entry.
+            // We should unlock the achievement too.
+            newData = toggleAchievement(newData, achievement.achievement, true);
+          }
+        }
+      }
+
+      onSaveDataChange(newData);
     },
     [saveData, onSaveDataChange],
   );
 
-  const handleUnlockAll = useCallback(() => {
-    onSaveDataChange(unlockAllLogbook(saveData));
-  }, [saveData, onSaveDataChange]);
+  const handleBulkConfirm = useCallback(
+    (newOwnership: Record<string, boolean>) => {
+      setDlcOwnership((prev) => ({ ...prev, ...newOwnership }));
+      setIsBulkPromptOpen(false);
+      performBulkUnlock({ ...dlcOwnership, ...newOwnership });
+    },
+    [dlcOwnership, performBulkUnlock],
+  );
 
   const handleLockAll = useCallback(() => {
     onSaveDataChange(lockAllLogbook(saveData));
@@ -103,6 +270,19 @@ export function LogbookEditor({
 
   return (
     <div className="flex flex-col gap-4 relative">
+      <DLCPromptModal
+        isOpen={isPromptOpen}
+        dlc={pendingEntry?.dlc || null}
+        onConfirm={confirmPendingEntry}
+        onDeny={denyPendingEntry}
+      />
+      <BulkDLCPromptModal
+        isOpen={isBulkPromptOpen}
+        onConfirm={handleBulkConfirm}
+        onCancel={() => setIsBulkPromptOpen(false)}
+        existingOwnership={dlcOwnership}
+      />
+
       {/* Stats Bar with Bulk Actions */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
@@ -128,7 +308,7 @@ export function LogbookEditor({
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             type="button"
-            onClick={handleUnlockAll}
+            onClick={handleUnlockAllClick}
             className="ror-button text-[10px] py-2 px-4 bg-ror-uncommon text-ror-bg-main border-ror-uncommon hover:brightness-110 font-bold tracking-wider"
           >
             UNLOCK ALL
@@ -191,22 +371,50 @@ export function LogbookEditor({
                   onClick={() => setSelectedDLC(dlc)}
                   className={`
                     px-3 py-1.5 text-[10px] uppercase tracking-wider border transition-all whitespace-nowrap
-                    ${
-                      selectedDLC === dlc
-                        ? "bg-ror-orange-accent text-ror-bg-main border-ror-orange-accent font-bold"
-                        : "bg-transparent text-ror-text-dim border-ror-border/50 hover:text-ror-text-main hover:border-ror-border"
+                    ${selectedDLC === dlc
+                      ? "bg-ror-orange-accent text-ror-bg-main border-ror-orange-accent font-bold"
+                      : "bg-transparent text-ror-text-dim border-ror-border/50 hover:text-ror-text-main hover:border-ror-border"
                     }
                   `}
                 >
                   {dlc === "all"
                     ? "ALL"
                     : DLC_NAMES[dlc]
-                        .replace("Survivors of the Void", "SOTV")
-                        .replace("Seekers of the Storm", "SOTS")
-                        .replace("Alloyed Collective", "AC")
-                        .replace("Base Game", "BASE")}
+                      .replace("Survivors of the Void", "SOTV")
+                      .replace("Seekers of the Storm", "SOTS")
+                      .replace("Alloyed Collective", "AC")
+                      .replace("Base Game", "BASE")}
                 </button>
               ))}
+            </div>
+
+            {/* Status Filter */}
+            <div className="flex items-center gap-3">
+              <span className="text-[9px] text-ror-text-dim uppercase tracking-widest hidden sm:block">
+                STATUS
+              </span>
+              <div className="flex gap-1.5">
+                {(["all", "discovered", "missing"] as const).map((status) => (
+                  <button
+                    type="button"
+                    key={status}
+                    onClick={() => setSelectedStatus(status)}
+                    className={`
+                      px-3 py-1.5 text-[10px] uppercase tracking-wider border transition-all whitespace-nowrap
+                      ${selectedStatus === status
+                        ? status === "discovered"
+                          ? "bg-ror-uncommon text-ror-bg-main border-ror-uncommon font-bold"
+                          : status === "missing"
+                            ? "bg-ror-legendary text-ror-bg-main border-ror-legendary font-bold"
+                            : "bg-ror-text-muted text-ror-bg-main border-ror-text-muted font-bold"
+                        : "bg-transparent text-ror-text-dim border-ror-border/50 hover:text-ror-text-main hover:border-ror-border"
+                      }
+                    `}
+                  >
+                    {status === "all" ? "ALL" : status === "discovered" ? "✓ FOUND" : "✗ MISSING"}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -224,10 +432,9 @@ export function LogbookEditor({
                 onClick={() => setSelectedCategory(cat)}
                 className={`
                   px-4 py-1.5 text-[10px] uppercase tracking-wider border transition-all whitespace-nowrap
-                  ${
-                    selectedCategory === cat
-                      ? "bg-ror-text-muted text-ror-bg-main border-ror-text-muted font-bold"
-                      : "bg-transparent text-ror-text-muted border-ror-border/50 hover:border-ror-text-dim hover:bg-ror-bg-panel"
+                  ${selectedCategory === cat
+                    ? "bg-ror-text-muted text-ror-bg-main border-ror-text-muted font-bold"
+                    : "bg-transparent text-ror-text-muted border-ror-border/50 hover:border-ror-text-dim hover:bg-ror-bg-panel"
                   }
                 `}
               >
@@ -250,48 +457,46 @@ export function LogbookEditor({
         </span>
         <span className="text-ror-text-dim text-xs tracking-wider uppercase">
           <span className="text-ror-uncommon">{unlockedInView}</span> Discovered
+          {" · "}
+          <span className="text-ror-legendary">{filteredEntries.length - unlockedInView}</span> Missing
         </span>
       </motion.div>
 
       {/* Grid */}
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="show"
-        className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3 overflow-y-auto pr-2 pb-4 custom-scrollbar"
-        style={{ maxHeight: "calc(100vh - 320px)" }}
-      >
-        <AnimatePresence mode="popLayout">
-          {filteredEntries.map((entry) => (
-            <motion.div
-              key={entry.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              layout
-            >
-              <LogbookCard
-                entry={entry}
-                isUnlocked={isLogbookEntryUnlocked(saveData, entry)}
-                onToggle={handleToggleEntry}
-                linkedChallengeCount={getChallengeCountForLogbookEntry(
-                  entry.id,
-                )}
-              />
-            </motion.div>
-          ))}
-        </AnimatePresence>
+      {filteredEntries.length === 0 ? (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="col-span-full py-20 text-center text-ror-text-dim"
+        >
+          NO DATA FOUND
+        </motion.div>
+      ) : (
+        <div className="flex flex-col gap-6">
+          <GridContainer key={currentPage + selectedCategory}>
+            {currentEntries.map((entry) => (
+              <ItemContainer key={entry.id}>
+                <div className="h-full">
+                  <LogbookCard
+                    entry={entry}
+                    isUnlocked={isLogbookEntryUnlocked(saveData, entry)}
+                    onToggle={handleToggleEntry}
+                    linkedChallengeCount={getChallengeCountForLogbookEntry(
+                      entry.id
+                    )}
+                  />
+                </div>
+              </ItemContainer>
+            ))}
+          </GridContainer>
 
-        {filteredEntries.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="col-span-full py-20 text-center text-ror-text-dim"
-          >
-            NO DATA FOUND
-          </motion.div>
-        )}
-      </motion.div>
+          <PaginationControls
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
+        </div>
+      )}
     </div>
   );
 }

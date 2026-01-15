@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { PaginationControls } from "./PaginationControls";
 import {
   Book,
   Download,
@@ -34,10 +35,13 @@ import { ChallengeCard } from "./ChallengeCard";
 import { CoinsEditor } from "./CoinsEditor";
 import { LogbookEditor } from "./LogbookEditor";
 
+import { BulkDLCPromptModal } from "./BulkDLCPromptModal";
+
 interface SaveEditorProps {
   initialSaveData: SaveData;
   rawProfile: RawUserProfile;
   fileName: string;
+  fileHandle?: FileSystemFileHandle;
 }
 
 const categories: (ChallengeCategory | "all")[] = [
@@ -50,6 +54,12 @@ const categories: (ChallengeCategory | "all")[] = [
 ];
 
 const dlcs: (DLC | "all")[] = ["all", "base", "sotv", "sots", "ac"];
+
+const ScrollSeekPlaceholder = ({ height, width, index }: any) => (
+  <div className="h-full w-full ror-card bg-ror-bg-main/50 border border-ror-border opacity-50 flex items-center justify-center">
+    <div className="w-12 h-12 bg-black/20 rounded-full" />
+  </div>
+);
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -66,10 +76,32 @@ const itemVariants = {
   show: { opacity: 1, y: 0 },
 };
 
+const PAGE_SIZE = 24;
+
+const GridContainer = ({ children, ...props }: any) => (
+  <motion.div
+    variants={containerVariants}
+    initial="hidden"
+    animate="show"
+    key={props.key}
+    {...props}
+    className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3"
+  >
+    {children}
+  </motion.div>
+);
+
+const ItemContainer = ({ children, ...props }: any) => (
+  <div {...props} className="h-full relative">
+    {children}
+  </div>
+);
+
 export function SaveEditor({
   initialSaveData,
   rawProfile,
   fileName,
+  fileHandle,
 }: SaveEditorProps) {
   const [saveData, setSaveData] = useState<SaveData>(initialSaveData);
   const [searchQuery, setSearchQuery] = useState("");
@@ -78,10 +110,18 @@ export function SaveEditor({
     ChallengeCategory | "all"
   >("all");
   const [selectedDLC, setSelectedDLC] = useState<DLC | "all">("all");
+  const [selectedStatus, setSelectedStatus] = useState<"all" | "unlocked" | "locked">("all");
+  const [currentPage, setCurrentPage] = useState(1);
   const [hasChanges, setHasChanges] = useState(false);
   const [activeTab, setActiveTab] = useState<"achievements" | "logbook">(
     "achievements",
   );
+
+  // DLC Prompt Logic
+  const [dlcOwnership, setDlcOwnership] = useState<Record<string, boolean>>({
+    base: true,
+  });
+  const [isBulkPromptOpen, setIsBulkPromptOpen] = useState(false);
 
   // Debounce search to prevent animation lag
   useEffect(() => {
@@ -97,6 +137,10 @@ export function SaveEditor({
     if (selectedCategory !== "all" && c.category !== selectedCategory)
       return false;
     if (selectedDLC !== "all" && c.dlc !== selectedDLC) return false;
+    // Status filter
+    const isUnlocked = saveData.achievements.includes(c.achievement);
+    if (selectedStatus === "unlocked" && !isUnlocked) return false;
+    if (selectedStatus === "locked" && isUnlocked) return false;
     if (debouncedSearch) {
       const q = debouncedSearch.toLowerCase();
       return (
@@ -107,6 +151,18 @@ export function SaveEditor({
     }
     return true;
   });
+
+  // Calculate Pagination
+  const totalPages = Math.ceil(filteredChallenges.length / PAGE_SIZE);
+  const currentChallenges = filteredChallenges.slice(
+    (currentPage - 1) * PAGE_SIZE,
+    currentPage * PAGE_SIZE
+  );
+
+  // Reset page
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, selectedCategory, selectedDLC, selectedStatus]);
 
   const unlockedInView = filteredChallenges.filter((c) =>
     saveData.achievements.includes(c.achievement),
@@ -125,20 +181,61 @@ export function SaveEditor({
     [],
   );
 
+  const performBulkUnlock = useCallback(
+    (ownershipObj: Record<string, boolean>) => {
+      setSaveData((prev) => unlockAll(prev, ownershipObj));
+      setHasChanges(true);
+    },
+    [],
+  );
+
   const handleUnlockAll = useCallback(() => {
-    setSaveData((prev) => unlockAll(prev));
-    setHasChanges(true);
-  }, []);
+    // Check if we need to ask for any DLCs
+    const unknowns = ["sotv", "sots", "ac"].some(
+      (dlc) => dlcOwnership[dlc] === undefined,
+    );
+
+    if (unknowns) {
+      setIsBulkPromptOpen(true);
+    } else {
+      // All known, proceed
+      performBulkUnlock(dlcOwnership);
+    }
+  }, [dlcOwnership, performBulkUnlock]);
+
+  const handleBulkConfirm = useCallback(
+    (newOwnership: Record<string, boolean>) => {
+      setDlcOwnership((prev) => ({ ...prev, ...newOwnership }));
+      setIsBulkPromptOpen(false);
+      performBulkUnlock({ ...dlcOwnership, ...newOwnership });
+    },
+    [dlcOwnership, performBulkUnlock],
+  );
 
   const handleLockAll = useCallback(() => {
     setSaveData((prev) => lockAll(prev));
     setHasChanges(true);
   }, []);
 
-  const handleExport = useCallback(() => {
+  const handleExport = useCallback(async () => {
     const modifiedXml = generateModifiedXml(rawProfile, saveData);
-    downloadFile(modifiedXml, fileName, "text/xml");
-  }, [rawProfile, saveData, fileName]);
+
+    if (fileHandle) {
+      try {
+        const writable = await fileHandle.createWritable();
+        await writable.write(modifiedXml);
+        await writable.close();
+        alert("File saved successfully!");
+        setHasChanges(false);
+      } catch (err) {
+        console.error("Failed to save file:", err);
+        alert("Failed to save file to original location. Downloading instead.");
+        downloadFile(modifiedXml, fileName, "text/xml");
+      }
+    } else {
+      downloadFile(modifiedXml, fileName, "text/xml");
+    }
+  }, [rawProfile, saveData, fileName, fileHandle]);
 
   const handleLogbookChange = useCallback((newSaveData: SaveData) => {
     setSaveData(newSaveData);
@@ -161,6 +258,13 @@ export function SaveEditor({
 
   return (
     <div className="h-full flex flex-col lg:flex-row gap-6 p-6 max-w-[1800px] mx-auto w-full">
+      <BulkDLCPromptModal
+        isOpen={isBulkPromptOpen}
+        onConfirm={handleBulkConfirm}
+        onCancel={() => setIsBulkPromptOpen(false)}
+        existingOwnership={dlcOwnership}
+      />
+
       {/* Left Sidebar - Two Card Layout */}
       <motion.aside
         initial={{ opacity: 0, x: -20 }}
@@ -178,12 +282,17 @@ export function SaveEditor({
                 <User size={24} className="text-ror-text-main relative z-10" />
               </div>
               <div className="overflow-hidden min-w-0">
-                <h2
-                  className="text-ror-text-main font-display text-lg truncate leading-none mb-1"
-                  title={saveData.name}
-                >
-                  {saveData.name}
-                </h2>
+                <input
+                  type="text"
+                  value={saveData.name}
+                  onChange={(e) => {
+                    setSaveData((prev) => ({ ...prev, name: e.target.value }));
+                    setHasChanges(true);
+                  }}
+                  className="w-full bg-transparent text-ror-text-main font-display text-lg truncate leading-none mb-1 focus:outline-none focus:ring-1 focus:ring-ror-orange-accent/50 rounded px-1 -ml-1 transition-all hover:bg-ror-bg-panel/50 placeholder:text-ror-text-dim/50"
+                  placeholder="Profile Name"
+                  title="Click to edit profile name"
+                />
                 <p
                   className="text-ror-text-dim text-[10px] truncate font-mono opacity-70"
                   title={fileName}
@@ -267,7 +376,7 @@ export function SaveEditor({
                 className="ror-button text-[10px] py-2 flex items-center justify-center gap-2"
               >
                 <Download size={12} />
-                EXPORT
+                {fileHandle ? "SAVE" : "EXPORT"}
               </motion.button>
 
               <motion.button
@@ -308,10 +417,9 @@ export function SaveEditor({
             onClick={() => setActiveTab("achievements")}
             className={`
               px-6 py-3 text-sm font-display uppercase tracking-wider transition-all flex items-center gap-2
-              ${
-                activeTab === "achievements"
-                  ? "text-ror-text-main border-b-2 border-ror-orange-accent"
-                  : "text-ror-text-dim hover:text-ror-text-main"
+              ${activeTab === "achievements"
+                ? "text-ror-text-main border-b-2 border-ror-orange-accent"
+                : "text-ror-text-dim hover:text-ror-text-main"
               }
             `}
           >
@@ -323,10 +431,9 @@ export function SaveEditor({
             onClick={() => setActiveTab("logbook")}
             className={`
               px-6 py-3 text-sm font-display uppercase tracking-wider transition-all flex items-center gap-2
-              ${
-                activeTab === "logbook"
-                  ? "text-ror-text-main border-b-2 border-ror-orange-accent"
-                  : "text-ror-text-dim hover:text-ror-text-main"
+              ${activeTab === "logbook"
+                ? "text-ror-text-main border-b-2 border-ror-orange-accent"
+                : "text-ror-text-dim hover:text-ror-text-main"
               }
             `}
           >
@@ -338,6 +445,49 @@ export function SaveEditor({
         {/* Tab Content */}
         {activeTab === "achievements" ? (
           <>
+            {/* Stats Bar with Bulk Actions */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="ror-card p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-ror-bg-main border border-ror-border flex items-center justify-center">
+                  <Trophy size={18} className="text-ror-text-main" />
+                </div>
+                <div>
+                  <p className="text-ror-text-main font-display text-sm uppercase tracking-wider">
+                    Achievement Progress
+                  </p>
+                  <p className="text-ror-text-muted text-xs">
+                    <span className="text-ror-blue-accent">
+                      {stats.unlockedAchievements}
+                    </span>{" "}
+                    / {stats.totalAchievements} achievements unlocked
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-2">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="button"
+                  onClick={handleUnlockAll}
+                  className="ror-button text-[10px] py-2 px-4 bg-ror-uncommon text-ror-bg-main border-ror-uncommon hover:brightness-110 font-bold tracking-wider"
+                >
+                  UNLOCK ALL
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="button"
+                  onClick={handleLockAll}
+                  className="ror-button text-[10px] py-2 px-4 bg-ror-legendary text-ror-bg-main border-ror-legendary hover:brightness-110 font-bold tracking-wider"
+                >
+                  LOCK ALL
+                </motion.button>
+              </div>
+            </motion.div>
             {/* Filters Bar */}
             <motion.div
               initial={{ opacity: 0, y: -10 }}
@@ -378,11 +528,10 @@ export function SaveEditor({
                     onClick={() => setSelectedCategory(cat)}
                     className={`
                   px-3 py-1 text-[10px] uppercase tracking-wider border transition-all
-                  ${
-                    selectedCategory === cat
-                      ? "bg-ror-text-muted text-ror-bg-main border-ror-text-muted font-bold"
-                      : "bg-transparent text-ror-text-muted border-transparent hover:border-ror-text-dim hover:bg-ror-bg-panel"
-                  }
+                  ${selectedCategory === cat
+                        ? "bg-ror-text-muted text-ror-bg-main border-ror-text-muted font-bold"
+                        : "bg-transparent text-ror-text-muted border-transparent hover:border-ror-text-dim hover:bg-ror-bg-panel"
+                      }
                 `}
                   >
                     {cat === "all" ? "ALL" : CATEGORY_NAMES[cat]}
@@ -399,19 +548,42 @@ export function SaveEditor({
                     onClick={() => setSelectedDLC(dlc)}
                     className={`
                   px-2 py-1 text-[10px] uppercase tracking-wider border transition-all
-                  ${
-                    selectedDLC === dlc
-                      ? "bg-ror-orange-accent text-ror-bg-main border-ror-orange-accent font-bold"
-                      : "bg-transparent text-ror-text-dim border-transparent hover:text-ror-text-main"
-                  }
+                  ${selectedDLC === dlc
+                        ? "bg-ror-orange-accent text-ror-bg-main border-ror-orange-accent font-bold"
+                        : "bg-transparent text-ror-text-dim border-transparent hover:text-ror-text-main"
+                      }
                 `}
                   >
                     {dlc === "all"
                       ? "ALL"
                       : DLC_NAMES[dlc]
-                          .replace("Survivors of the Void", "SOTV")
-                          .replace("Seekers of the Storm", "SOTS")
-                          .replace("Alloyed Collective", "AC")}
+                        .replace("Survivors of the Void", "SOTV")
+                        .replace("Seekers of the Storm", "SOTS")
+                        .replace("Alloyed Collective", "AC")}
+                  </button>
+                ))}
+              </div>
+
+              {/* Status Filter */}
+              <div className="flex flex-wrap gap-1 border-l border-ror-border pl-4">
+                {(["all", "unlocked", "locked"] as const).map((status) => (
+                  <button
+                    type="button"
+                    key={status}
+                    onClick={() => setSelectedStatus(status)}
+                    className={`
+                      px-2 py-1 text-[10px] uppercase tracking-wider border transition-all
+                      ${selectedStatus === status
+                        ? status === "unlocked"
+                          ? "bg-ror-uncommon text-ror-bg-main border-ror-uncommon font-bold"
+                          : status === "locked"
+                            ? "bg-ror-legendary text-ror-bg-main border-ror-legendary font-bold"
+                            : "bg-ror-text-muted text-ror-bg-main border-ror-text-muted font-bold"
+                        : "bg-transparent text-ror-text-dim border-transparent hover:text-ror-text-main"
+                      }
+                    `}
+                  >
+                    {status === "all" ? "ALL" : status === "unlocked" ? "✓ UNLOCKED" : "✗ LOCKED"}
                   </button>
                 ))}
               </div>
@@ -428,52 +600,49 @@ export function SaveEditor({
                 Showing {filteredChallenges.length} Entries
               </span>
               <span className="text-ror-text-dim text-xs tracking-wider uppercase">
-                <span className="text-ror-uncommon">{unlockedInView}</span>{" "}
-                Unlocked
+                <span className="text-ror-uncommon">{unlockedInView}</span> Unlocked
+                {" · "}
+                <span className="text-ror-legendary">{filteredChallenges.length - unlockedInView}</span> Locked
               </span>
             </motion.div>
 
             {/* Grid */}
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="show"
-              className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3 overflow-y-auto pr-2 pb-4 custom-scrollbar"
-              style={{ maxHeight: "calc(100vh - 200px)" }}
-            >
-              <AnimatePresence mode="popLayout">
-                {filteredChallenges.map((challenge) => (
-                  <motion.div
-                    key={challenge.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    layout
-                  >
-                    <ChallengeCard
-                      challenge={challenge}
-                      isUnlocked={saveData.achievements.includes(
-                        challenge.achievement,
-                      )}
-                      onToggle={handleToggleAchievement}
-                      linkedLogbookCount={getLogbookCountForChallenge(
-                        challenge.id,
-                      )}
-                    />
-                  </motion.div>
-                ))}
-              </AnimatePresence>
+            {filteredChallenges.length === 0 ? (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="col-span-full py-20 text-center text-ror-text-dim"
+              >
+                NO DATA FOUND
+              </motion.div>
+            ) : (
+              <div className="flex flex-col gap-6">
+                <GridContainer key={currentPage + selectedCategory}>
+                  {currentChallenges.map((challenge) => (
+                    <ItemContainer key={challenge.id}>
+                      <div className="h-full">
+                        <ChallengeCard
+                          challenge={challenge}
+                          isUnlocked={saveData.achievements.includes(
+                            challenge.achievement
+                          )}
+                          onToggle={handleToggleAchievement}
+                          linkedLogbookCount={getLogbookCountForChallenge(
+                            challenge.id
+                          )}
+                        />
+                      </div>
+                    </ItemContainer>
+                  ))}
+                </GridContainer>
 
-              {filteredChallenges.length === 0 && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="col-span-full py-20 text-center text-ror-text-dim"
-                >
-                  NO DATA FOUND
-                </motion.div>
-              )}
-            </motion.div>
+                <PaginationControls
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={setCurrentPage}
+                />
+              </div>
+            )}
           </>
         ) : (
           <LogbookEditor

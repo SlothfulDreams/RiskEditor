@@ -7,7 +7,11 @@ import { isValidSaveFile, readFileAsText } from "@/lib/utils";
 import { validateSaveFile } from "@/lib/xml-parser";
 
 interface FileUploadProps {
-  onFileLoaded: (xmlContent: string, fileName: string) => void;
+  onFileLoaded: (
+    xmlContent: string,
+    fileName: string,
+    fileHandle?: FileSystemFileHandle,
+  ) => void;
 }
 
 export function FileUpload({ onFileLoaded }: FileUploadProps) {
@@ -17,7 +21,7 @@ export function FileUpload({ onFileLoaded }: FileUploadProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const processFile = useCallback(
-    async (file: File) => {
+    async (file: File, handle?: FileSystemFileHandle) => {
       setError(null);
       setIsLoading(true);
 
@@ -33,7 +37,7 @@ export function FileUpload({ onFileLoaded }: FileUploadProps) {
           throw new Error(validation.error);
         }
 
-        onFileLoaded(content, file.name);
+        onFileLoaded(content, file.name, handle);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to process file");
       } finally {
@@ -79,7 +83,37 @@ export function FileUpload({ onFileLoaded }: FileUploadProps) {
     [processFile],
   );
 
-  const handleClick = () => {
+  const handleClick = async () => {
+    // Try File System Access API first
+    if ("showOpenFilePicker" in window) {
+      try {
+        const [handle] = await window.showOpenFilePicker({
+          types: [
+            {
+              description: "Risk of Rain 2 Save File",
+              accept: {
+                "text/xml": [".xml"],
+              },
+            },
+          ],
+          excludeAcceptAllOption: false,
+          multiple: false,
+        });
+
+        const file = await handle.getFile();
+        await processFile(file, handle);
+        return;
+      } catch (err) {
+        // User cancelled or error, ignore
+        if ((err as Error).name !== "AbortError") {
+          console.error("File picker error:", err);
+        } else {
+          return; // Don't fallback to input click if user explicitly cancelled the picker
+        }
+      }
+    }
+
+    // Fallback to standard input
     fileInputRef.current?.click();
   };
 
@@ -183,11 +217,10 @@ export function FileUpload({ onFileLoaded }: FileUploadProps) {
             className={`
             px-6 py-2 text-xs tracking-widest font-display uppercase
             border transition-all duration-200
-            ${
-              isDragging
+            ${isDragging
                 ? "border-ror-orange-accent text-ror-orange-accent bg-ror-orange-accent/10"
                 : "border-ror-border text-ror-text-dim group-hover:border-ror-text-muted group-hover:text-ror-text-main"
-            }
+              }
           `}
           >
             {isLoading ? "PROCESSING..." : "SELECT FILE"}

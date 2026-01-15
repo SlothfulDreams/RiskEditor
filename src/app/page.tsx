@@ -14,6 +14,7 @@ interface LoadedSave {
   raw: RawUserProfile;
   saveData: SaveData;
   fileName: string;
+  fileHandle?: FileSystemFileHandle;
 }
 
 export default function Home() {
@@ -21,10 +22,14 @@ export default function Home() {
   const [loadedSave, setLoadedSave] = useState<LoadedSave | null>(null);
 
   const handleFileLoaded = useCallback(
-    (xmlContent: string, fileName: string) => {
+    (
+      xmlContent: string,
+      fileName: string,
+      fileHandle?: FileSystemFileHandle,
+    ) => {
       try {
         const { raw, saveData } = loadSaveFile(xmlContent);
-        setLoadedSave({ raw, saveData, fileName });
+        setLoadedSave({ raw, saveData, fileName, fileHandle });
         setAppState("editing");
       } catch (error) {
         console.error("Failed to load save file:", error);
@@ -173,6 +178,7 @@ export default function Home() {
                   initialSaveData={loadedSave.saveData}
                   rawProfile={loadedSave.raw}
                   fileName={loadedSave.fileName}
+                  fileHandle={loadedSave.fileHandle}
                 />
               )}
             </motion.div>
