@@ -3381,12 +3381,12 @@ export const logbookEntries: LogbookEntry[] = [
   },
 
   {
-    id: "solus-distributer",
-    name: "Solus Distributer",
+    id: "solus-distributor",
+    name: "Solus Distributor",
     category: "monsters",
     unlockId: "/Logbook/LOGBOOK_CATEGORY_MONSTER/ROBOBALLMINI_BODY_NAME",
     dlc: "base",
-    image: "/images/logbook/solus-distributer.webp"
+    image: "/images/logbook/solus-distributor.webp"
   },
 
   {
