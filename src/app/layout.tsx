@@ -56,6 +56,13 @@ export const metadata: Metadata = {
   },
 };
 
+const websiteStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "RainShift",
+  url: siteUrl,
+};
+
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -93,8 +100,10 @@ export default function RootLayout({
       >
         <script
           type="application/ld+json"
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: This static JSON-LD object contains no user-provided values.
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: This static JSON-LD contains no user-provided values.
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([websiteStructuredData, structuredData]),
+          }}
         />
         {children}
         <Analytics />
